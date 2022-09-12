@@ -10,17 +10,14 @@ function App() {
   });
 
   // input 수정을 위한 함수
-  const onChange = useCallback(
-    (e) => {
-      const { name, value } = e.target;
-      setForm(
-        produce((draft) => {
-          draft[name] = value;
-        })
-      );
-    },
-    [form]
-  );
+  const onChange = useCallback((e) => {
+    const { name, value } = e.target;
+    setForm(
+      produce((draft) => {
+        draft[name] = value;
+      })
+    );
+  }, []);
 
   // form 등록을 위한 함수
   const onSubmit = useCallback(
@@ -34,7 +31,7 @@ function App() {
 
       // array에 새 항목 등록
       setData(
-        produce(data, (draft) => {
+        produce((draft) => {
           draft.array.push(info);
         })
       );
@@ -53,7 +50,7 @@ function App() {
   const onRemove = useCallback(
     (id) => {
       setData(
-        produce(data, (draft) => {
+        produce((draft) => {
           draft.array.splice(
             draft.array.findIndex((info) => info.id === id),
             1
